@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <table>
+        <tr>
+            <td><h2>Analizador de texto</h2></td>
+        </tr>
+        <tr>
+            <td class="tdp"> <span id="resultadosPalabras">Número de palabras</span> | <span id="resultadoCaracteres">Número de caracteres</span>  </td>
+        </tr>
+        <tr>
+            <td > <textarea class="textArea" id="miTextArea" name="textoUsuario" rows="4" cols="50"></textarea> </td>       
+        </tr>
+    </table>
+
+     <div><button onclick="limpiarTextArea()">Limpiar</button></div>
+     <div><button onclick="limpiarMétricas()">Limpiar métricas</button></div>
+
+    <!-- Importar el módulo analizador directamente en HTML -->
+    <script type="module">
+        // Importar el objeto analizador
+        import { analizador } from './funciones.js';
+
+        // Obtener el elemento del textarea
+        const textarea = document.getElementById('miTextArea');
+
+        // Limpiar el textarea
+        window.limpiarTextArea = () => {
+            textarea.value = '';
+            analizadorText();
+        };
+
+        // Limpiar métricas
+        window.limpiarMétricas = () => {
+            textarea.value = '';
+            document.getElementById('resultadosPalabras').textContent = 'Número de palabras: ';
+            document.getElementById('resultadoCaracteres').textContent = 'Número de caracteres: ';
+        };
+
+        const analizadorText = () => {
+            const textoIngresado = textarea.value;
+
+            // Obtener el número de palabras utilizando el analizador
+            const wordCount = analizador.getWordCount(textoIngresado);
+  
+            // Obtener el numero de caracteres utilizando el analizador
+            const charCount = analizador.getCharacterCount(textoIngresado);
+            
+  
+            // Actualizar el contenido del elemento resultadosPalabras
+            document.getElementById('resultadosPalabras').textContent = 'Número de palabras: ' + wordCount;
+            document.getElementById('resultadoCaracteres').textContent = 'Número de caracteres: ' + charCount;
+        };
+
+        // Agregar un evento de cambio al textarea
+        textarea.addEventListener('input', function () {
+          // Obtener el valor del textarea
+          analizadorText();
+        });
+    </script>
+</body>
+</html>

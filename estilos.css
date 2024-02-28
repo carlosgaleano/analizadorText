@@ -1,0 +1,15 @@
+.textArea{
+    width: 80vw; /* Ancho del 100% del contenedor padre */
+    padding: 10px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de la fuente */
+    border: 1px solid #269e84; /* Borde del textarea */
+    border-radius: 5px; /* Bordes redondeados */
+    resize: vertical; /* Permitir la redimensión vertical */
+    min-height: 100px; /* Altura mínima */
+}
+
+.tdp{
+     width: 80px;   
+    background-color: #f2f2f2;
+  
+}   
