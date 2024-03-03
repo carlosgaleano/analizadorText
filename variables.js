@@ -40,6 +40,24 @@ const person2=[ {
     isStudent: true
 }];
 
+const pensamientoGisela=['tengo', 'una', 'habilidad', 'fenomenal', 'para','enfrentar', 'cualquier', 'cosa' ];
+
+
+imprimir = (pensamientoGisela) => {
+
+    let meditacion ='';
+    
+   
+     pensamientoGisela.forEach(element => {
+        meditacion=meditacion +element+' ';
+        
+        });
+
+  return meditacion;
+}
+
+
+const arrayPalabras = ['hola', 'como', 'estas'];
 //console.log('Mi nombre es ' + person.name + ' y tengo ' + person.age + ' años');
 
 console.log('Mi nombre es 2 ' + person2[0].name + ' y tengo ' + person2[0].age + ' años');
@@ -55,3 +73,5 @@ for (var i = 0; i < person2.length; i++) {
 person2.forEach(element => {
    console.log(element.name);  
 });
+
+console.log('meditacion__ ',imprimir(pensamientoGisela));
