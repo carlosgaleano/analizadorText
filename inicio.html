@@ -43,7 +43,7 @@
         window.limpiarMétricas = () => {
             textarea.value = '';
             resultadosPalabrasElement.textContent = 'Número de palabras: ';
-            document.getElementById('resultadoCaracteres').textContent = 'Número de caracteres: ';
+            document.querySelector('#resultadoCaracteres').textContent = 'Número de caracteres: ';
         };
 
         const analizadorText = () => {
@@ -58,8 +58,8 @@
             // Actualizar el contenido del elemento resultadosPalabras usando querySelector
             resultadosPalabrasElement.textContent = 'Número de palabras: ' + wordCount;
 
-            // Actualizar el contenido del elemento resultadoCaracteres usando getElementById
-            document.getElementById('resultadoCaracteres').textContent = 'Número de caracteres: ' + charCount;
+            // Actualizar el contenido del elemento resultadoCaracteres usando querySelector
+            document.querySelector('#resultadoCaracteres').textContent = 'Número de caracteres: ' + charCount;
         };
 
         // Agregar un evento de cambio al textarea
@@ -70,3 +70,4 @@
     </script>
 </body>
 </html>
+
