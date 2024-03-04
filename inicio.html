@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analizador de Texto</title>
+    <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
     <table>
@@ -13,85 +13,76 @@
         </tr>
         <tr>
             <td class="tdp">
-                <span>caracteres</span> | 
-                <span>caracteres sin espacios</span> | 
-                <span>Número de palabras</span>
+                <span id="caracteres">caracteres: </span> | 
+                <span id="caracteresSinEspacios">caracteres sin espacios: </span> |
+                <span id="numeroPalabras">Número de palabras: </span>
             </td>
         </tr>
         <tr>
             <td class="tdp">
-                <span>numeros</span> | 
-                <span>suma de numeros</span> | 
-                <span>promedio  Longitud</span>
+                <span id="numeros">numeros: </span> | 
+                <span id="sumaNumeros">suma de neumeros: </span> |
+                <span id="promedioLongitud">promedio Longitud: </span>
             </td>
         </tr>
         <tr>
-            <td> <textarea class="textArea" name="textoUsuario" rows="4" cols="50"></textarea> </td>
+            <td>
+                <textarea class="textArea" name="textoUsuario" rows="4" cols="50"></textarea>
+            </td>
         </tr>
     </table>
 
-     <div><button onclick="limpiarTextArea()">Limpiar</button></div>
-     <div><button onclick="limpiarMétricas()">Limpiar métricas</button></div>
+    <div><button id="limpiarMetricas">Limpiar métricas</button></div>
 
     <!-- Importar el módulo analizador directamente en HTML -->
+    
     <script type="module">
-        // Importar el objeto analizador
-        import { analizador } from './funciones.js';
 
-        // Obtener el elemento del textarea usando querySelector
-        const textarea = document.querySelector('textarea.textArea');
+        import { analizador } from "./funciones.js";
+        // Dom ocupo queryselector para seleccionar el textarea y  para el boton  limpiar (getElementById)
+        const textarea = document.querySelector("textarea.textArea");
+        const buttonLimpiar = document.getElementById("limpiarMetricas");
 
-        // Limpiar el textarea
-        window.limpiarTextArea = () => {
-            textarea.value = '';
-            analizadorText();
-        };
+       
 
-        // Limpiar métricas
-        window.limpiarMétricas = () => {
-            textarea.value = '';
-            // Actualizar el contenido de los elementos span directamente
-            const spans = document.querySelectorAll('.tdp span');
-            spans[0].textContent = 'caracteres: ';
-            spans[1].textContent = 'caracteres sin espacios: ';  
-            spans[2].textContent = 'Número de palabras: ';
-            spans[3].textContent = 'numeros: ';
-            spans[4].textContent = 'suma de neumeros: ';
-            spans[5].textContent = 'promedio  Longitud: ';
-        };
+        const  limpiarMetricas =()=> {
+            textarea.value = "";
+            const spans = document.querySelectorAll(".tdp span");
+            spans.forEach(span => (span.textContent = `${span.id}: `));
+            document.getElementById("promedioLongitud").textContent = "promedio Longitud: ";
+        }
 
-        const analizadorText = () => {
+        const analizadorText=()=> {
             const textoIngresado = textarea.value;
-
-            // Obtener el número de palabras utilizando el analizador
             const wordCount = analizador.getWordCount(textoIngresado);
-
-            // Obtener el numero de caracteres utilizando el analizador
             const charCount = analizador.getCharacterCount(textoIngresado);
-
             const charCountNoSpaces = analizador.getCharacterCountExcludingSpaces(textoIngresado);
-
             const numberCount = analizador.getNumberCount(textoIngresado);
-
             const addNumberCount = analizador.getNumerosSum(textoIngresado);
-
             const getAverageWordLength = analizador.getAverageWordLength(textoIngresado);
 
-            // Actualizar el contenido de los elementos span directamente
-            const spans = document.querySelectorAll('span');
-            spans[0].textContent = 'caracteres: ' + charCount;
-            spans[1].textContent = 'caracteres sin espacios: ' + charCountNoSpaces;  
-            spans[2].textContent = 'Número de palabras: ' + wordCount;
-            spans[3].textContent = 'numeros: ' + numberCount;
-            spans[4].textContent = 'suma de neumeros: ' + addNumberCount;
-            spans[5].textContent = 'promedio  Longitud: ' + getAverageWordLength;
-        };
+            const spans = document.querySelectorAll("span");
+            spans[0].textContent = `caracteres: ${charCount}`;
+            spans[1].textContent = `caracteres sin espacios: ${charCountNoSpaces}`;
+            spans[2].textContent = `Número de palabras: ${wordCount}`;
+            spans[3].textContent = `numeros: ${numberCount}`;
+            spans[4].textContent = `suma de neumeros: ${addNumberCount}`;
+            spans[5].textContent = `promedio Longitud: ${getAverageWordLength}`;
+        }
 
-        // Agregar un evento de cambio al textarea
-        textarea.addEventListener('input', function () {
-          // Obtener el valor del textarea
-          analizadorText();
+        // Agregar eventos de cambio al textarea keyup
+
+        textarea.addEventListener("keyup", () => {
+            analizadorText();
         });
+
+        // Agregar evento de clic al botón limpiar
+
+        buttonLimpiar.addEventListener("click", () => {
+            limpiarMetricas();
+        });
+       
     </script>
 </body>
 </html>
+
