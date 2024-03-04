@@ -2,19 +2,40 @@
 
 const analizador = {
   getWordCount: (text) => {
-    //TODO: esta función debe retornar el recuento de palabras que se encuentran en el parámetro `text` de tipo `string`.
-
     // Eliminar espacios en blanco al inicio y al final del párrafo
-    text = text.trim();
-
-    // Dividir el párrafo en palabras usando espacios como separadores
-    const palabras = text.split(/\s+/);
-
-    // console.log('resultado del split',palabras);
-
-    // Devolver la cantidad de palabras en el párrafo como cadena de texto // cuenta los elmemntos del array
-    return palabras.length;
-  },
+    const trimmedText = text.trim();
+  
+    // Inicializar el contador de palabras
+    let wordCount = 0;
+  
+    // Indicar si estamos dentro de una palabra
+    let dentroDePalabra = false;
+  
+    // Recorremos cada caracter en el texto
+    for (let i = 0; i < trimmedText.length; i++) {
+      const char = trimmedText[i];
+  
+      // Si el caracter no es un espacio, estamos dentro de una palabra
+      if (char !== ' ') {
+        dentroDePalabra = true;
+      } else {
+        // Si encontramos un espacio y estábamos dentro de una palabra, aumentamos el contador
+        if (dentroDePalabra) {
+          wordCount++;
+          dentroDePalabra = false; // Reiniciamos el indicador
+        }
+      }
+    }
+  
+    // Aumentamos el contador si la última palabra no termina con un espacio
+    if (dentroDePalabra) {
+      wordCount++;
+    }
+  
+    // Devolver la cantidad de palabras en el párrafo
+    return wordCount;
+  }
+  ,
 
   getCharacterCount: (text) => {
     // Eliminar espacios en blanco, comas y puntos al inicio y al final del párrafo
@@ -24,59 +45,99 @@ const analizador = {
 
   getCharacterCountExcludingSpaces: (text) => {
     // Eliminar espacios en blanco, comas y puntos al inicio y al final del párrafo
-    text = text.replace(/[,. ]/g, "");
-
-    return text.length;
+    const trimmedText = text.trim();
+    let count = 0;
+  
+    // Recorremos cada caracter en el texto
+    for (let i = 0; i < trimmedText.length; i++) {
+      const char = trimmedText[i];
+  
+      // Verificamos si el caracter no es un espacio, coma o punto
+      if (char !== ' ' && char !== ',' && char !== '.') {
+        count++;
+      }
+    }
+  
+    return count;
   },
   getNumberCount: (text) => {
-    const numerosEncontrados = text.match(/\d/g);
-
-    // Si no se encuentran números, retornamos 0
-    if (numerosEncontrados === null) {
-      return 0;
+    let count = 0;
+  
+    // Recorremos cada caracter en el texto
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+  
+      // Verificamos si el caracter es un número
+      if (char >= '0' && char <= '9') {
+        count++;
+      }
     }
-
-    // Retornamos la cantidad de números encontrados
-    return numerosEncontrados.length;
+  
+    return count;
   },
 
   getNumerosSum: (text) => {
-
-    const numerosEncontrados = text.match(/\d/g);
-
-    // Si no se encuentran números, retornamos 0
-    if (numerosEncontrados === null) {
-        return 0;
+    let sumaNumeros = 0;
+  
+    // Recorremos cada caracter en el texto
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+  
+      // Verificamos si el caracter es un número
+      if (char >= '0' && char <= '9') {
+        // Convertimos el carácter a número y lo sumamos
+        sumaNumeros += parseInt(char, 10);
+      }
     }
-
-    // Convertimos cada número de string a número y sumamos
-    const sumaNumeros = numerosEncontrados.map(Number).reduce((acumulador, numero) => acumulador + numero, 0);
-
+  
     // Retornamos la suma de números
     return sumaNumeros;
-
-
   },
 
-  getAverageWordLength:(text) => {
-
-     // Eliminar espacios en blanco al inicio y al final del párrafo
-     text = text.trim();
-
-     // Dividir el párrafo en palabras usando espacios como separadores
-     const palabras = text.split(/\s+/);
- 
-     // Calcular la longitud total de las palabras
-     const longitudTotal = palabras.reduce((total, palabra) => total + palabra.length, 0);
- 
-     // Calcular la longitud media con dos dígitos decimales
-     const longitudMedia = longitudTotal / palabras.length || 0; // evitar división por cero
- 
-     // Retornar la longitud media con dos dígitos decimales
-     return longitudMedia.toFixed(2);
-
-
-  	}
+  getAverageWordLength: (text) => {
+    // Eliminar espacios en blanco al inicio y al final del párrafo
+    const trimmedText = text.trim();
+  
+    // Dividir el párrafo en palabras usando espacios como separadores
+    const palabras = [];
+    let palabraActual = '';
+  
+    // Recorremos cada caracter en el texto
+    for (let i = 0; i < trimmedText.length; i++) {
+      const char = trimmedText[i];
+  
+      // Si el caracter no es un espacio, lo agregamos a la palabra actual
+      if (char !== ' ') {
+        palabraActual += char;
+      } else {
+        // Si encontramos un espacio, agregamos la palabra actual al array de palabras
+        if (palabraActual.length > 0) {
+          palabras.push(palabraActual);
+          palabraActual = '';
+        }
+      }
+    }
+  
+    // Agregamos la última palabra si no hay espacio al final del texto
+    if (palabraActual.length > 0) {
+      palabras.push(palabraActual);
+    }
+  
+    // Calcular la longitud total de las palabras
+    let longitudTotal = 0;
+  
+    // Recorremos cada palabra y sumamos sus longitudes
+    for (let i = 0; i < palabras.length; i++) {
+      longitudTotal += palabras[i].length;
+    }
+  
+    // Calcular la longitud media con dos dígitos decimales
+    const longitudMedia = palabras.length > 0 ? longitudTotal / palabras.length : 0;
+  
+    // Retornar la longitud media con dos dígitos decimales
+    return longitudMedia.toFixed(2);
+  }
+  
 
 
     
