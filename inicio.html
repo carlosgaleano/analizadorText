@@ -12,14 +12,21 @@
             <td><h2>Analizador de texto</h2></td>
         </tr>
         <tr>
-            <td class="tdp"><span id="resultadoCaracteres">caracteres</span>| <span id="resultadoCaracteresSinEspacios">caracteres sin espacios</span> | <span id="resultadosPalabras">Número de palabras</span>   </td>
+            <td class="tdp">
+                <span>caracteres</span> | 
+                <span>caracteres sin espacios</span> | 
+                <span>Número de palabras</span>
+            </td>
         </tr>
         <tr>
-            <td class="tdp"><span id="numberCount">numeros</span>| <span id="addNumber">suma de numeros</span> | <span id="AverageWordLength">promedio  Longitud</span>   </td>
+            <td class="tdp">
+                <span>numeros</span> | 
+                <span>suma de numeros</span> | 
+                <span>promedio  Longitud</span>
+            </td>
         </tr>
-
         <tr>
-            <td > <textarea class="textArea" name="textoUsuario" rows="4" cols="50"></textarea> </td>       
+            <td> <textarea class="textArea" name="textoUsuario" rows="4" cols="50"></textarea> </td>
         </tr>
     </table>
 
@@ -32,10 +39,7 @@
         import { analizador } from './funciones.js';
 
         // Obtener el elemento del textarea usando querySelector
-        const textarea = document.querySelector('.textArea');
-
-        // Obtener el elemento del span resultadosPalabras usando querySelector
-        const resultadosPalabrasElement = document.querySelector('#resultadosPalabras');
+        const textarea = document.querySelector('textarea.textArea');
 
         // Limpiar el textarea
         window.limpiarTextArea = () => {
@@ -46,8 +50,14 @@
         // Limpiar métricas
         window.limpiarMétricas = () => {
             textarea.value = '';
-            resultadosPalabrasElement.textContent = 'Número de palabras: ';
-            document.querySelector('#resultadoCaracteres').textContent = 'Número de caracteres: ';
+            // Actualizar el contenido de los elementos span directamente
+            const spans = document.querySelectorAll('.tdp span');
+            spans[0].textContent = 'caracteres: ';
+            spans[1].textContent = 'caracteres sin espacios: ';  
+            spans[2].textContent = 'Número de palabras: ';
+            spans[3].textContent = 'numeros: ';
+            spans[4].textContent = 'suma de neumeros: ';
+            spans[5].textContent = 'promedio  Longitud: ';
         };
 
         const analizadorText = () => {
@@ -55,7 +65,7 @@
 
             // Obtener el número de palabras utilizando el analizador
             const wordCount = analizador.getWordCount(textoIngresado);
-  
+
             // Obtener el numero de caracteres utilizando el analizador
             const charCount = analizador.getCharacterCount(textoIngresado);
 
@@ -63,24 +73,18 @@
 
             const numberCount = analizador.getNumberCount(textoIngresado);
 
-            const addNumberCount=analizador.getNumerosSum(textoIngresado);
+            const addNumberCount = analizador.getNumerosSum(textoIngresado);
 
-            const getAverageWordLength=analizador.getAverageWordLength(textoIngresado);
+            const getAverageWordLength = analizador.getAverageWordLength(textoIngresado);
 
-        
-
-
-            
-            // Actualizar el contenido del elemento resultadosPalabras usando querySelector
-            resultadosPalabrasElement.textContent = 'Número de palabras: ' + wordCount;
-
-            // Actualizar el contenido del elemento resultadoCaracteres usando querySelector
-            document.querySelector('#resultadoCaracteres').textContent = 'Número de caracteres: ' + charCount;
-            document.querySelector('#resultadoCaracteresSinEspacios').textContent = 'caracteres sin espacios: ' + charCountNoSpaces;  
-            document.querySelector('#numberCount').textContent = 'numeros: ' + numberCount;
-            document.querySelector('#addNumber').textContent = 'suma de neumeros: ' + addNumberCount;
-            document.querySelector('#AverageWordLength').textContent = 'promedio  Longitud: ' + getAverageWordLength;
-           
+            // Actualizar el contenido de los elementos span directamente
+            const spans = document.querySelectorAll('span');
+            spans[0].textContent = 'caracteres: ' + charCount;
+            spans[1].textContent = 'caracteres sin espacios: ' + charCountNoSpaces;  
+            spans[2].textContent = 'Número de palabras: ' + wordCount;
+            spans[3].textContent = 'numeros: ' + numberCount;
+            spans[4].textContent = 'suma de neumeros: ' + addNumberCount;
+            spans[5].textContent = 'promedio  Longitud: ' + getAverageWordLength;
         };
 
         // Agregar un evento de cambio al textarea
@@ -91,4 +95,3 @@
     </script>
 </body>
 </html>
-
