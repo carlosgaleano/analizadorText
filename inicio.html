@@ -12,8 +12,12 @@
             <td><h2>Analizador de texto</h2></td>
         </tr>
         <tr>
-            <td class="tdp"> <span id="resultadosPalabras">Número de palabras</span> | <span id="resultadoCaracteres">Número de caracteres</span>  </td>
+            <td class="tdp"><span id="resultadoCaracteres">caracteres</span>| <span id="resultadoCaracteresSinEspacios">caracteres sin espacios</span> | <span id="resultadosPalabras">Número de palabras</span>   </td>
         </tr>
+        <tr>
+            <td class="tdp"><span id="numberCount">numeros</span>| <span id="addNumber">suma de numeros</span> | <span id="AverageWordLength">promedio  Longitud</span>   </td>
+        </tr>
+
         <tr>
             <td > <textarea class="textArea" name="textoUsuario" rows="4" cols="50"></textarea> </td>       
         </tr>
@@ -54,12 +58,29 @@
   
             // Obtener el numero de caracteres utilizando el analizador
             const charCount = analizador.getCharacterCount(textoIngresado);
+
+            const charCountNoSpaces = analizador.getCharacterCountExcludingSpaces(textoIngresado);
+
+            const numberCount = analizador.getNumberCount(textoIngresado);
+
+            const addNumberCount=analizador.getNumerosSum(textoIngresado);
+
+            const getAverageWordLength=analizador.getAverageWordLength(textoIngresado);
+
+        
+
+
             
             // Actualizar el contenido del elemento resultadosPalabras usando querySelector
             resultadosPalabrasElement.textContent = 'Número de palabras: ' + wordCount;
 
             // Actualizar el contenido del elemento resultadoCaracteres usando querySelector
             document.querySelector('#resultadoCaracteres').textContent = 'Número de caracteres: ' + charCount;
+            document.querySelector('#resultadoCaracteresSinEspacios').textContent = 'caracteres sin espacios: ' + charCountNoSpaces;  
+            document.querySelector('#numberCount').textContent = 'numeros: ' + numberCount;
+            document.querySelector('#addNumber').textContent = 'suma de neumeros: ' + addNumberCount;
+            document.querySelector('#AverageWordLength').textContent = 'promedio  Longitud: ' + getAverageWordLength;
+           
         };
 
         // Agregar un evento de cambio al textarea
