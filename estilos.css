@@ -1,3 +1,9 @@
+/**
+ * @Author: Carlos Galeano
+ * @Date:   2024-03-05 16:07:47
+ * @Last Modified by:   Carlos Galeano
+ * @Last Modified time: 2024-03-05 16:36:53
+ */
 .textArea{
     width: 80vw; /* Ancho del 100% del contenedor padre */
     padding: 10px; /* Espaciado interno */
@@ -13,3 +19,53 @@
     background-color: #f2f2f2;
   
 }   
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

@@ -7,35 +7,24 @@
     <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-    <table>
-        <tr>
-            <td><h2>Analizador de texto</h2></td>
-        </tr>
-        <tr>
-            <td class="tdp">
-                <span id="caracteres">caracteres: </span> | 
-                <span id="caracteresSinEspacios">caracteres sin espacios: </span> |
-                <span id="numeroPalabras">Número de palabras: </span>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdp">
-                <span id="numeros">numeros: </span> | 
-                <span id="sumaNumeros">suma de neumeros: </span> |
-                <span id="promedioLongitud">promedio Longitud: </span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea class="textArea" name="textoUsuario" rows="4" cols="50"></textarea>
-            </td>
-        </tr>
-    </table>
+    <ul>
+        <ol data-testid="header"><h2>Analizador de texto</h2></ol>
+        
+            <li id="caracteres" data-testid="char-count">caracteres: </li> | 
+            <li id="caracteresSinEspacios" data-testid="char-no-spaces">caracteres sin espacios: </li> |
+            <li id="numeroPalabras" data-testid="word-count">Número de palabras: </li>    
+            <li id="numeros" data-testid="number-count">numeros: </li> | 
+            <li id="sumaNumeros" data-testid="sum-numbers">suma de neumeros: </li> |
+            <li id="promedioLongitud" data-testid="avg-word-length">promedio Longitud: </li>
+     
+        <ol data-testid="textarea-li">
+            <textarea class="textArea" name="textoUsuario" rows="4" cols="50" data-testid="text-area"></textarea>
+        </ol>
+    </ul>
 
-    <div><button id="limpiarMetricas">Limpiar métricas</button></div>
+    <div><button id="limpiarMetricas" data-testid="clear-metrics">Limpiar métricas</button></div>
 
     <!-- Importar el módulo analizador directamente en HTML -->
-    
     <script type="module" src="index.js"></script>
 </body>
 </html>
