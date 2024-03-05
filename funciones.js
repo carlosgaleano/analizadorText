@@ -3,37 +3,15 @@
 const analizador = {
   getWordCount: (text) => {
     // Eliminar espacios en blanco al inicio y al final del párrafo
-    const trimmedText = text.trim();
+    let trimmedText = text.trim();
+
+       trimmedText = text.split(' ');
   
-    // Inicializar el contador de palabras
-    let wordCount = 0;
-  
-    // Indicar si estamos dentro de una palabra
-    let dentroDePalabra = false;
-  
-    // Recorremos cada caracter en el texto
-    for (let i = 0; i < trimmedText.length; i++) {
-      const char = trimmedText[i];
-  
-      // Si el caracter no es un espacio, estamos dentro de una palabra
-      if (char !== ' ') {
-        dentroDePalabra = true;
-      } else {
-        // Si encontramos un espacio y estábamos dentro de una palabra, aumentamos el contador
-        if (dentroDePalabra) {
-          wordCount++;
-          dentroDePalabra = false; // Reiniciamos el indicador
-        }
-      }
-    }
-  
-    // Aumentamos el contador si la última palabra no termina con un espacio
-    if (dentroDePalabra) {
-      wordCount++;
-    }
-  
-    // Devolver la cantidad de palabras en el párrafo
-    return wordCount;
+       console.log(trimmedText);
+
+      return trimmedText.length;
+     
+    
   }
   ,
 
