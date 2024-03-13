@@ -39,38 +39,54 @@ const analizador = {
       return count;
     },
     getNumberCount: (text) => {
-      let count = 0;
-    
-      // Recorremos cada caracter en el texto
-      for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-    
-        // Verificamos si el caracter es un número
-        if (char >= '0' && char <= '9') {
-          count++;
+      let cantidadDigitos = 0;
+  const palabras = text.split(' '); // Dividir el texto en palabras
+
+  for (let i = 0; i < palabras.length; i++) {
+    const palabra = palabras[i];
+    const numero = parseInt(palabra, 10);
+
+    if (!isNaN(numero)) { // Verificar si la palabra es un número
+      let digitosEnPalabra = 0;
+      for (let j = 0; j < palabra.length; j++) {
+        if (!isNaN(parseInt(palabra[j], 10))) {
+          digitosEnPalabra++;
         }
       }
+      cantidadDigitos += digitosEnPalabra;
+    }
+  }
+
+  return cantidadDigitos;
+ 
     
-      return count;
+      
     },
   
-    getNumerosSum: (text) => {
-      let sumaNumeros = 0;
-    
-      // Recorremos cada caracter en el texto
-      for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-    
-        // Verificamos si el caracter es un número
-        if (char >= '0' && char <= '9') {
-          // Convertimos el carácter a número y lo sumamos
-          sumaNumeros += parseInt(char, 10);
-        }
+   getNumerosSum :(text) => {
+
+    let sumaNumeros = 0;
+    const palabras = text.split(' '); // Dividir el texto en palabras
+  
+    for (let i = 0; i < palabras.length; i++) {
+      const numero = parseInt(palabras[i], 10);
+      if (!isNaN(numero)) { // Verificar si la palabra es un número
+        sumaNumeros += numero;
       }
-    
-      // Retornamos la suma de números
-      return sumaNumeros;
-    },
+    }
+  
+    return sumaNumeros;
+
+
+  /*   let sumaNumeros = 0;
+    let numerosEncontrados = text.match(/\b\d+\b/g);
+  
+    if (numerosEncontrados) {
+      sumaNumeros = numerosEncontrados.reduce((acc, numero) => acc + parseInt(numero, 10), 0);
+    }
+  
+    return sumaNumeros; */
+   },
   
     getAverageWordLength: (text) => {
       // Eliminar espacios en blanco al inicio y al final del párrafo
