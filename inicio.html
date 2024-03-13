@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
+
+    <h2>Analizador de texto</h2>
     <ul>
-        <ol data-testid="header"><h2>Analizador de texto</h2></ol>
+       
         
             <li id="caracteres" data-testid="char-count">caracteres: </li> | 
             <li id="caracteresSinEspacios" data-testid="char-no-spaces">caracteres sin espacios: </li> |
@@ -17,12 +19,13 @@
             <li id="sumaNumeros" data-testid="sum-numbers">suma de neumeros: </li> |
             <li id="promedioLongitud" data-testid="avg-word-length">promedio Longitud: </li>
      
-        <ol data-testid="textarea-li">
+        <div data-testid="textarea-li">
             <textarea class="textArea" name="textoUsuario" rows="4" cols="50" data-testid="text-area"></textarea>
-        </ol>
+        </div>
     </ul>
 
     <div><button id="limpiarMetricas" data-testid="clear-metrics">Limpiar métricas</button></div>
+    <div class="" style="text-align: left !important;" ><p>Autora: <b>Gisela Saavedra</b></p></div>
 
     <!-- Importar el módulo analizador directamente en HTML -->
     <script type="module" src="index.js"></script>
